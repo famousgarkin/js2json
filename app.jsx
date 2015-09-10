@@ -5,6 +5,7 @@
 			return {
 				input: input,
 				output: this._convert(input),
+				error: null,
 			}
 		},
 
@@ -12,17 +13,24 @@
 			return JSON.stringify(eval('(' + js + ')'))
 		},
 
-		_onInputChange: function (event) {
-			var value = event.target.value
+		_onInputChange: function (e) {
+			var value = e.target.value
 			this.setState(function (state) {
 				state.input = value
 			})
 		},
 
-		_onConvertClick: function (event) {
-			var json = this._convert(this.state.input)
+		_onConvertClick: function () {
+			var json = null
+			var error = null
+			try {
+				json = this._convert(this.state.input)
+			} catch (e) {
+				error = e.toString()
+			}
 			this.setState(function (state) {
 				state.output = json
+				state.error = error
 			})
 		},
 
@@ -37,6 +45,10 @@
 						<span className="glyphicon glyphicon-repeat" aria-hidden="true"></span>
 						&nbsp; Convert
 					</button>
+
+					&nbsp;
+					&nbsp;
+					<span className="text-danger">{this.state.error}</span>
 					<br/>
 					<br/>
 
