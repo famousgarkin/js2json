@@ -10,7 +10,7 @@
 		},
 
 		_convert: function (js) {
-			return JSON.stringify(eval('(' + js + ')'))
+			return JSON.stringify(eval('(' + js + ')'), null, '\t')
 		},
 
 		_onInputChange: function (e) {
