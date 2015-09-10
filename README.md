@@ -1,5 +1,5 @@
 # JS 2 JSON
 
-A simple web-based JS to JSON converter.
+a simple browser-based JS to JSON converter
 
-http://famousgarkin.github.io/js2json/.
+http://famousgarkin.github.io/js2json/
