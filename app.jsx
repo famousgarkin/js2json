@@ -1,10 +1,15 @@
 ;(function () {
 	var Editor = React.createClass({
 		getInitialState: function () {
+			var input = "{\n\ta: 'little',\n\t\"example\": 1,\n}\n"
 			return {
-				input: "{\n\ta: 'little',\n\t\"example\": 1,\n}\n",
-				output: null,
+				input: input,
+				output: this._convert(input),
 			}
+		},
+
+		_convert: function (js) {
+			return JSON.stringify(eval('(' + js + ')'))
 		},
 
 		_onInputChange: function (event) {
@@ -14,8 +19,8 @@
 			})
 		},
 
-		_convert: function () {
-			var json = JSON.stringify(eval('(' + this.state.input + ')'))
+		_onConvertClick: function (event) {
+			var json = this._convert(this.state.input)
 			this.setState(function (state) {
 				state.output = json
 			})
@@ -28,7 +33,7 @@
 					</textarea>
 					<br/>
 
-					<button className="btn btn-primary" onClick={this._convert}>
+					<button className="btn btn-primary" onClick={this._onConvertClick}>
 						<span className="glyphicon glyphicon-repeat" aria-hidden="true"></span>
 						&nbsp; Convert
 					</button>
