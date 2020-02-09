@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "devDependencies": {
+    "http-server": "^0.12.1"
+  }
+}
